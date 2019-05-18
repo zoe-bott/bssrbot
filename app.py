@@ -11,7 +11,7 @@ PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZA
 def get_bot_response(message):
     """This is just a dummy function, returning a variation of what
     the user said. Replace this function with one connected to chatbot."""
-    if message == "What's for dino" or message == "what's cooking good looking":
+    if "dino" in message:
         return "Chicken and rice"
     else:
         return "Your mum"
