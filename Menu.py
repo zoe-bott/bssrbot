@@ -101,7 +101,9 @@ def getWeek():
                     weekMenu[currentMeal].append(ele)
     return weekMenu
 
-def getDay(weekMenu, day):
+def getDayMenu(day):
+    weekMenu = getWeek()
+
     breakfast = weekMenu['residential breakfast'][day]
     lunch = Lunch(weekMenu['main'][day], weekMenu['vegetarian/ vegan'][day], weekMenu['salad'][day])
     dinner = Dinner(weekMenu['main dinner'][day], weekMenu['vegetarian/ vegan dinner'][day], weekMenu['veg and carb'][day], weekMenu['dessert'][day])
@@ -113,9 +115,7 @@ def getDay(weekMenu, day):
 
 if __name__ == '__main__':
     current_day = date.today().weekday()
-    week = getWeek()
-    print(week['main dinner'])
 
-    tuesday = getDay(week, 5)
+    tuesday = getDayMenu(5)
 
     print(tuesday)

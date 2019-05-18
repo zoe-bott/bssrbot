@@ -1,5 +1,7 @@
 from flask import Flask, request
 import requests
+from datetime import date
+from Menu import *
 
 app = Flask(__name__)
 
@@ -12,7 +14,9 @@ def get_bot_response(message):
     """This is just a dummy function, returning a variation of what
     the user said. Replace this function with one connected to chatbot."""
     if "dino" in message:
-        return "Chicken and rice"
+        current_day = date.today().weekday()
+        todayMenu = getDayMenu(current_day)
+        return todayMenu
     else:
         return "Your mum"
 
