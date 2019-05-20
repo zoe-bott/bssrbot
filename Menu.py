@@ -51,9 +51,9 @@ class Lunch():
         elif self.main == "selection of brunch items with pastries & extras":
             return("selection of brunch items with pastries & extras")
         else:
-            return (f"Main - {self.main}\n"
-                    f"Vegetarian - {self.veg}\n"
-                    f"Salad - {self.salad}\n")
+            return (f"Main:\n {self.main}\n"
+                    f"Vegetarian:\n {self.veg}\n"
+                    f"Salad:\n {self.salad}\n")
 
 class Dinner():
     def __init__(self, main, vegetarian, vegAndCarb, dessert):
@@ -86,10 +86,10 @@ class Dinner():
         elif self.vegetarian == "pizza pasta night":
             return(f"*In an Italian accent*\n It's the pizza and the pasta night 🍕")
         else:
-            return (f"Main - {self.main}\n"
-                    f"Vegetarian - {self.vegetarian}\n"
-                    f"Veg and Carb - {self.vegAndCarb}\n"
-                    f"Dessert - {self.dessert}")
+            return (f"Main:\n {self.main}\n"
+                    f"Vegetarian:\n {self.vegetarian}\n"
+                    f"Veg and Carb:\n {self.vegAndCarb}\n"
+                    f"Dessert:\n {self.dessert}")
 
 def getWeek():
     soup = BS(open('menu.html'), 'html.parser')
@@ -105,7 +105,7 @@ def getWeek():
                 ele = col.text.strip()
                 ele = ele.replace('\n', '')
                 # print(repr(ele))
-                ele = ele.replace(' \xa0', 'and ')
+                ele = ele.replace(' \xa0', ' and ')
                 if i == 0:
                     # check if main or veg/vegan
                     if ele in weekMenu:
