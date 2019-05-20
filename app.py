@@ -54,7 +54,7 @@ def respond(sender, message):
     responseList = get_bot_response(message)
     for response in responseList:
         send_message(sender, response)
-        send_gif_message(sender, "what's cooking good looking")
+    send_gif_message(sender, "what's cooking good looking")
     
 
 def is_user_message(message):
