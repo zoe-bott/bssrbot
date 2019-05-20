@@ -53,6 +53,7 @@ def respond(sender, message):
     responseList = get_bot_response(message)
     for response in responseList:
         send_message(sender, response)
+        send_gif_message(sender, "what's cooking good looking")
     
 
 def is_user_message(message):
@@ -61,7 +62,14 @@ def is_user_message(message):
             message['message'].get('text') and
             not message['message'].get("is_echo"))\
 
+def search_gif(text):
+    #get a GIF that is similar to text sent
+    payload = {'s': text, 'api_key': '<GIPHY_API_KEY>'}
+    r = requests.get('http://api.giphy.com/v1/gifs/translate', params=payload)
+    r = r.json()
+    url = r['data']['images']['original']['url']
 
+    return url
 
 
 @app.route("/",methods=['GET','POST'])
@@ -105,3 +113,28 @@ def send_message(recipient_id, text):
     )
 
     return response.json()
+
+def send_gif_message(recipient_id, message):
+    gif_url = search_gif(message)
+
+    data = json.dumps({
+        "recipient": {"id": recipient_id},
+        "message": {
+            "attachment": {
+                "type": "image",
+                "payload": {
+                    "url": gif_url
+                }
+            }}
+    })
+
+    params = {
+        "access_token": <PAGE_ACCESS_TOKEN>
+    }
+
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+                      params=params, headers=headers, data=data)
