@@ -18,12 +18,12 @@ def get_bot_response(message):
         todayMenu = getDayMenu(current_day)
 
         response.append("Breakfast:\n" + todayMenu.breakfast)
-        response.appand("Lunch:\n" + todayMenu.lunch)
+        response.append("Lunch:\n" + todayMenu.lunch)
         response.append("Dinner:\n" + todayMenu.dinner)
     elif "breakfast" in message:
         response.append("Breakfast:\n" + todayMenu.breakfast)
     elif "lunch" in message:
-        response.appand("Lunch:\n" + todayMenu.lunch)
+        response.append("Lunch:\n" + todayMenu.lunch)
     elif "dinner" in message:
         response.append("Dinner:\n" + todayMenu.dinner)
     else:
