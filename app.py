@@ -129,7 +129,7 @@ def send_gif_message(recipient_id, message):
     })
 
     params = {
-        "access_token": <PAGE_ACCESS_TOKEN>
+        "access_token": PAGE_ACCESS_TOKEN
     }
 
     headers = {
