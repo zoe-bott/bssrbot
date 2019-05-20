@@ -116,6 +116,6 @@ def getDayMenu(day):
 if __name__ == '__main__':
     current_day = date.today().weekday()
 
-    tuesday = getDayMenu(5)
+    tuesday = getDayMenu(3)
 
-    print(tuesday)
+    print(tuesday.dinner)

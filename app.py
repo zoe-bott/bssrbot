@@ -11,15 +11,18 @@ PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZA
 
 
 def get_bot_response(message):
-    """This is just a dummy function, returning a variation of what
-    the user said. Replace this function with one connected to chatbot."""
+    response = []
     if "dino" in message:
         current_day = date.today().weekday()
         todayMenu = getDayMenu(current_day)
-        # print(todayMenu)
-        return str(todayMenu)
+
+        response.append("Breakfast:\n" + todayMenu.breakfast)
+        response.appand("Lunch:\n" + todayMenu.lunch)
+        response.append("Dinner:\n" + todayMenu.dinner)
     else:
-        return "Sorry I don't understand"
+        response.append("Sorry I don't understant")
+
+    return response
 
 
 def verify_webhook(req):
@@ -31,10 +34,10 @@ def verify_webhook(req):
 def respond(sender, message):
     """Formulate a response to the user and
     pass it on to a function that sends it."""
-    response = get_bot_response(message)
-    send_message(sender, response)
-    send_message(sender, "hello")
-
+    responseList = get_bot_response(message)
+    for response in responseList:
+        send_message(sender, response)
+    
 
 def is_user_message(message):
     """Check if the message is a message from the user"""
