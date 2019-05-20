@@ -51,9 +51,9 @@ class Lunch():
         elif self.main == "selection of brunch items with pastries & extras":
             return("selection of brunch items with pastries & extras")
         else:
-            return (f"    Main: {self.main}\n"
-                    f"    Vegetarian: {self.veg}\n"
-                    f"    Salad: {self.salad}\n")
+            return (f"Main: {self.main}\n"
+                    f"Vegetarian: {self.veg}\n"
+                    f"Salad: {self.salad}\n")
 
 class Dinner():
     def __init__(self, main, vegetarian, vegAndCarb, dessert):
@@ -86,10 +86,10 @@ class Dinner():
         elif self.vegetarian == "pizza pasta night":
             return(f"*In an Italian accent*\n It's the pizza and the pasta night 🍕")
         else:
-            return (f"    Main: {self.main}\n"
-                    f"    Vegetarian: {self.vegetarian}\n"
-                    f"    Veg and Carb: {self.vegAndCarb}\n"
-                    f"    Dessert: {self.dessert}")
+            return (f"Main: {self.main}\n"
+                    f"Vegetarian: {self.vegetarian}\n"
+                    f"Veg and Carb: {self.vegAndCarb}\n"
+                    f"Dessert: {self.dessert}")
 
 def getWeek():
     soup = BS(open('menu.html'), 'html.parser')

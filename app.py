@@ -16,15 +16,23 @@ def get_bot_response(message):
     current_day = date.today().weekday()
     todayMenu = getDayMenu(current_day)
     if "dino" in message:
-        response.append("Breakfast:\n" + todayMenu.breakfast)
-        response.append("Lunch:\n" + str(todayMenu.lunch))
-        response.append("Dinner:\n" + str(todayMenu.dinner))
+        response.append("For breakfast today is:")
+        response.append(todayMenu.breakfast)
+
+        response.append("For lunch today is:")
+        response.append(str(todayMenu.lunch))
+        
+        response.append("For dinner today is:")
+        response.append(str(todayMenu.dinner))
     elif "breakfast" in message:
-        response.append("Breakfast:\n" + todayMenu.breakfast)
+        response.append("For breakfast today is:")
+        response.append(todayMenu.breakfast)
     elif "lunch" in message:
-        response.append("Lunch:\n" + str(todayMenu.lunch))
+        response.append("For lunch today is:")
+        response.append(str(todayMenu.lunch))
     elif "dinner" in message:
-        response.append("Dinner:\n" + str(todayMenu.dinner))
+        response.append("For dinner today is:")
+        response.append(str(todayMenu.dinner))
     else:
         response.append("Sorry I don't understand")
 
