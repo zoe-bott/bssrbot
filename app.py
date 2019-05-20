@@ -33,6 +33,7 @@ def respond(sender, message):
     pass it on to a function that sends it."""
     response = get_bot_response(message)
     send_message(sender, response)
+    send_message(sender, "hello")
 
 
 def is_user_message(message):
