@@ -21,7 +21,7 @@ def get_bot_response(message):
 
         response.append("For lunch today is:")
         response.append(str(todayMenu.lunch))
-        
+
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
     elif "breakfast" in message:
@@ -33,6 +33,8 @@ def get_bot_response(message):
     elif "dinner" in message:
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
+    elif "hello" in message or "hi" in message or "help" in message:
+        response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
     else:
         response.append("Sorry I don't understand")
 

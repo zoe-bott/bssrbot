@@ -51,9 +51,9 @@ class Lunch():
         elif self.main == "selection of brunch items with pastries & extras":
             return("selection of brunch items with pastries & extras")
         else:
-            return (f"Main:\n {self.main}\n"
-                    f"Vegetarian:\n {self.veg}\n"
-                    f"Salad:\n {self.salad}\n")
+            return (f"Main:\n {self.main}\n\n"
+                    f"Vegetarian:\n {self.veg}\n\n"
+                    f"Salad:\n {self.salad}\n\n")
 
 class Dinner():
     def __init__(self, main, vegetarian, vegAndCarb, dessert):
@@ -86,9 +86,9 @@ class Dinner():
         elif self.vegetarian == "pizza pasta night":
             return(f"*In an Italian accent*\n It's the pizza and the pasta night 🍕")
         else:
-            return (f"Main:\n {self.main}\n"
-                    f"Vegetarian:\n {self.vegetarian}\n"
-                    f"Veg and Carb:\n {self.vegAndCarb}\n"
+            return (f"Main:\n {self.main}\n\n"
+                    f"Vegetarian:\n {self.vegetarian}\n\n"
+                    f"Veg and Carb:\n {self.vegAndCarb}\n\n"
                     f"Dessert:\n {self.dessert}")
 
 def getWeek():
