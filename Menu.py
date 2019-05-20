@@ -1,6 +1,7 @@
 from datetime import date
 import calendar
 from bs4 import BeautifulSoup as BS
+import re
 
 class Day():
     def __init__(self, breakfast, lunch, dinner):
@@ -45,9 +46,14 @@ class Lunch():
         return self._salad
 
     def __str__(self):
-        return (f"    Main: {self.main}\n"
-                f"    Vegetarian: {self.veg}\n"
-                f"    Salad: {self.salad}\n")
+        if self.veg == "sandwich bar":
+            return("GET KEEN IT'S SANDWICH DAY 🥪🥪🥪")
+        elif self.main == "selection of brunch items with pastries & extras":
+            return("selection of brunch items with pastries & extras")
+        else:
+            return (f"    Main: {self.main}\n"
+                    f"    Vegetarian: {self.veg}\n"
+                    f"    Salad: {self.salad}\n")
 
 class Dinner():
     def __init__(self, main, vegetarian, vegAndCarb, dessert):
@@ -73,10 +79,17 @@ class Dinner():
         return self._dessert
 
     def __str__(self):
-        return (f"    Main: {self.main}\n"
-                f"    Vegetarian: {self.vegetarian}\n"
-                f"    Veg and Carb: {self.vegAndCarb}\n"
-                f"    Dessert: {self.dessert}")
+        if self.vegetarian == "chef’s choice":
+            return(f"It's a surprise! It's the chef's choice today 👩‍🍳")
+        elif self.vegetarian == "burger night":
+            return(f"Burger night baby 🍔")
+        elif self.vegetarian == "pizza pasta night":
+            return(f"*In an Italian accent*\n It's the pizza and the pasta night 🍕")
+        else:
+            return (f"    Main: {self.main}\n"
+                    f"    Vegetarian: {self.vegetarian}\n"
+                    f"    Veg and Carb: {self.vegAndCarb}\n"
+                    f"    Dessert: {self.dessert}")
 
 def getWeek():
     soup = BS(open('menu.html'), 'html.parser')
@@ -90,7 +103,8 @@ def getWeek():
             cols = row.find_all('td')
             for i, col in enumerate(cols):
                 ele = col.text.strip()
-                ele = ele.replace('\n', ', ')
+                ele = ele.replace('\n', '')
+                ele = ele.replace('\xa0', 'and ')
                 if i == 0:
                     # check if main or veg/vegan
                     if ele in weekMenu:
@@ -115,7 +129,6 @@ def getDayMenu(day):
 
 if __name__ == '__main__':
     current_day = date.today().weekday()
-
-    tuesday = getDayMenu(3)
-
-    print(tuesday.dinner)
+    print(getDayMenu(6))
+    # for i in range(7):
+    #     print(getDayMenu(i))
