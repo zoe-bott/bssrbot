@@ -21,7 +21,7 @@ class Day():
         return self._dinner
 
     def __str__(self):
-        return (f"Breakfast \n    {self.breakfast}\n\n"
+        return (f"Breakfast \n{self.breakfast}\n\n"
                 f"Lunch \n{self.lunch}\n\n"
                 f"Dinner \n{self.dinner}"
                 )
@@ -45,9 +45,9 @@ class Lunch():
         return self._salad
 
     def __str__(self):
-        return (f"    Main:       {self.main}\n"
+        return (f"    Main: {self.main}\n"
                 f"    Vegetarian: {self.veg}\n"
-                f"    Salad:      {self.salad}\n")
+                f"    Salad: {self.salad}\n")
 
 class Dinner():
     def __init__(self, main, vegetarian, vegAndCarb, dessert):
@@ -73,10 +73,10 @@ class Dinner():
         return self._dessert
 
     def __str__(self):
-        return (f"    Main:         {self.main}\n"
-                f"    Vegetarian:   {self.vegetarian}\n"
+        return (f"    Main: {self.main}\n"
+                f"    Vegetarian: {self.vegetarian}\n"
                 f"    Veg and Carb: {self.vegAndCarb}\n"
-                f"    Dessert:      {self.dessert}")
+                f"    Dessert: {self.dessert}")
 
 def getWeek():
     soup = BS(open('menu.html'), 'html.parser')

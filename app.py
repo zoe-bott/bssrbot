@@ -16,10 +16,10 @@ def get_bot_response(message):
     if "dino" in message:
         current_day = date.today().weekday()
         todayMenu = getDayMenu(current_day)
-        print(todayMenu)
+        # print(todayMenu)
         return str(todayMenu)
     else:
-        return "Your mum"
+        return "Sorry I don't understand"
 
 
 def verify_webhook(req):
