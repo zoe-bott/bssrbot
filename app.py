@@ -13,10 +13,9 @@ PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZA
 def get_bot_response(message):
     message = message.lower()
     response = []
+    current_day = date.today().weekday()
+    todayMenu = getDayMenu(current_day)
     if "dino" in message:
-        current_day = date.today().weekday()
-        todayMenu = getDayMenu(current_day)
-
         response.append("Breakfast:\n" + todayMenu.breakfast)
         response.append("Lunch:\n" + todayMenu.lunch)
         response.append("Dinner:\n" + todayMenu.dinner)
