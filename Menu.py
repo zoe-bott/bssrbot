@@ -51,9 +51,9 @@ class Lunch():
         elif self.main == "selection of brunch items with pastries & extras":
             return("selection of brunch items with pastries & extras")
         else:
-            return (f"Main: {self.main}\n"
-                    f"Vegetarian: {self.veg}\n"
-                    f"Salad: {self.salad}\n")
+            return (f"Main - {self.main}\n"
+                    f"Vegetarian - {self.veg}\n"
+                    f"Salad - {self.salad}\n")
 
 class Dinner():
     def __init__(self, main, vegetarian, vegAndCarb, dessert):
@@ -86,10 +86,10 @@ class Dinner():
         elif self.vegetarian == "pizza pasta night":
             return(f"*In an Italian accent*\n It's the pizza and the pasta night 🍕")
         else:
-            return (f"Main: {self.main}\n"
-                    f"Vegetarian: {self.vegetarian}\n"
-                    f"Veg and Carb: {self.vegAndCarb}\n"
-                    f"Dessert: {self.dessert}")
+            return (f"Main - {self.main}\n"
+                    f"Vegetarian - {self.vegetarian}\n"
+                    f"Veg and Carb - {self.vegAndCarb}\n"
+                    f"Dessert - {self.dessert}")
 
 def getWeek():
     soup = BS(open('menu.html'), 'html.parser')
@@ -104,7 +104,8 @@ def getWeek():
             for i, col in enumerate(cols):
                 ele = col.text.strip()
                 ele = ele.replace('\n', '')
-                ele = ele.replace('\xa0', 'and ')
+                # print(repr(ele))
+                ele = ele.replace(' \xa0', 'and ')
                 if i == 0:
                     # check if main or veg/vegan
                     if ele in weekMenu:
@@ -129,6 +130,6 @@ def getDayMenu(day):
 
 if __name__ == '__main__':
     current_day = date.today().weekday()
-    print(getDayMenu(6))
+    print(getDayMenu(2))
     # for i in range(7):
     #     print(getDayMenu(i))
