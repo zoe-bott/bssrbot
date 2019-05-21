@@ -73,11 +73,12 @@ def checkForCalendar(message):
     if "on today" in message:
         current_day = date.today().weekday()
         dayName = calendar.day_name[current_day].lower()
-        response.append(weekCalendar.dayName)
+        response.append(getattr(weekCalendar, dayName))
     for i, day in enumerate(daysOfWeek):
         if day in message:
-            reponse.append(f"This is what's on {day.capitalize()}:")
-            response.append(weekCalendar[i])
+            response.append(f"This is what's on {day.capitalize()}:")
+            dayName = calendar.day_name[i].lower()
+            response.append(getattr(weekCalendar, dayName))
     return response, gif
 
 def verify_webhook(req):
@@ -183,4 +184,4 @@ def send_gif_message(recipient_id, message):
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
                       params=params, headers=headers, data=data)
-# search_gif("lamb")
+# print(checkForCalendar("calendar"))

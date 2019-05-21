@@ -71,7 +71,7 @@ def getCalendar():
                 currentWeek = ele
             elif i > 2:
                 if ele == '':
-                    ele = "Nothing on today 🙌"
+                    ele = "Nothing 🙌"
                 calendarByWeek[currentWeek].append(ele)
     return calendarByWeek
 
