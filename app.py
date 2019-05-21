@@ -15,10 +15,26 @@ PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZA
 def get_bot_response(message):
     message = message.lower()
     response = []
+    gif = None
+
+    if "hello" in message or "hi" in message or "help" in message:
+        response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
+        gif = "hello"
+    if not response:
+        response, gif = checkForDino(message)
+    if not response:
+        response, gif = checkForCalendar(message)
+         
+    if not response:
+        response.append("Sorry I don't understand")
+        gif = "I don't understand"
+
+    return response, gif
+
+def checkForDino(message):
+    response = []
     current_day = date.today().weekday()
     todayMenu = getDayMenu(current_day)
-
-    weekCalendar = getWeek(2)
     if "dino" in message:
         response.append("For breakfast today is:")
         response.append(todayMenu.breakfast)
@@ -40,19 +56,25 @@ def get_bot_response(message):
     elif "dinner" in message:
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
-        gif = todayMenu.dinner.main     
-    elif "hello" in message or "hi" in message or "help" in message:
-        response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
-        gif = "hello"
-    elif "calendar" in message or "week" in message:
-        response.append(str(weekCalendar))
-        gif = None
-    else:
-        response.append("Sorry I don't understand")
-        gif = "I don't understand"
+        gif = todayMenu.dinner.main
 
     return response, gif
 
+def checkForCalendar(message):
+    daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+    response = []
+    weekCalendar = getWeek(2)
+
+    if "calendar" in message:
+        response.append(str(weekCalendar))
+    if "on today" in message:
+        current_day = date.today().weekday()
+        response.append(weekCalendar[current_day])
+    for i, day in enumerate(daysOfWeek):
+        if day in message:
+            reponse.append(f"This is what's on {day.capitalize()}:")
+            response.append(weekCalendar[i])
+    return response, None
 
 def verify_webhook(req):
     if req.args.get("hub.verify_token") == VERIFY_TOKEN:
