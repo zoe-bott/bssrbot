@@ -73,7 +73,7 @@ def checkForCalendar(message):
     if "on today" in message:
         current_day = date.today().weekday()
         dayName = calendar.day_name[current_day].lower()
-        response.append(weekCalendar[dayName])
+        response.append(weekCalendar.dayName)
     for i, day in enumerate(daysOfWeek):
         if day in message:
             reponse.append(f"This is what's on {day.capitalize()}:")
