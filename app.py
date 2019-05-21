@@ -29,15 +29,15 @@ def get_bot_response(message):
     elif "breakfast" in message:
         response.append("For breakfast today is:")
         response.append(todayMenu.breakfast)
-        gif = todayMenu.breakfast
+        gif = todayMenu.breakfast.split()[0]
     elif "lunch" in message:
         response.append("For lunch today is:")
         response.append(str(todayMenu.lunch))
-        gif = todayMenu.lunch.main
+        gif = todayMenu.lunch.main.split(' ')[0]
     elif "dinner" in message:
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
-        gif = todayMenu.dinner.main
+        gif = todayMenu.dinner.main.split(' ')[0]
     elif "hello" in message or "hi" in message or "help" in message:
         response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
         gif = "hello"
@@ -73,7 +73,7 @@ def is_user_message(message):
 
 def search_gif(text):
     #get a GIF that is similar to text sent
-    payload = {'s': text, 'api_key': 'KnoGs32vB6pMxyjAC3V22xWdWenz5asW', 'type': 'random'}
+    payload = {'s': text, 'api_key': 'KnoGs32vB6pMxyjAC3V22xWdWenz5asW'}
     r = requests.get('http://api.giphy.com/v1/gifs/translate', params=payload)
     r = r.json()
     url = r['data']['images']['original']['url']
