@@ -29,15 +29,15 @@ def get_bot_response(message):
     elif "breakfast" in message:
         response.append("For breakfast today is:")
         response.append(todayMenu.breakfast)
-        gif = "breakfast"
+        gif = todayMenu.breakfast
     elif "lunch" in message:
         response.append("For lunch today is:")
         response.append(str(todayMenu.lunch))
-        gif = "lunch"
+        gif = todayMenu.lunch.main
     elif "dinner" in message:
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
-        gif = "dinner"
+        gif = todayMenu.dinner.main
     elif "hello" in message or "hi" in message or "help" in message:
         response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
         gif = "hello"
