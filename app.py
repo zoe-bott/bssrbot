@@ -19,7 +19,8 @@ def get_bot_response(message):
     gif = None
 
     if "hello" in message or "hi" in message or "help" in message:
-        response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
+        response.append("Hello! Welcome to the Basser Bot! I'm here to help you with all your dino and calendar needs.")
+        response.append(f"Here are some example questions:\n1. What's for dino? \n2. What's for lunch today? \n 3. What's the calendar for this week? \n 4. What's happening on Thursday?")
         gif = "hello"
     if not response:
         response, gif = checkForDino(message)
