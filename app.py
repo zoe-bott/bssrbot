@@ -25,7 +25,7 @@ def get_bot_response(message):
 
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
-        gif = "cooking"
+        gif = "dog animals eating dinner"
     elif "breakfast" in message:
         response.append("For breakfast today is:")
         response.append(todayMenu.breakfast)
