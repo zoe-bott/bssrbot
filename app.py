@@ -11,7 +11,7 @@ VERIFY_TOKEN = 'letthebasseriansyeet'# <paste your verify token here>
 PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZAkXboUwTOE61RwkzNbO3kQNtjlZAFhOtZBUt9zbKskKjCdh01Lk6fD0dwLXY7N6c8LxVR76QXFlf0RM6SFYAdflKZC1fYpgJonPziIJlmstlIw2wYbAZDZD'
 
 
-def get_bot_response(message):
+def get_bot_response(message, sender):
     message = message.lower()
     response = []
     current_day = date.today().weekday()
@@ -57,7 +57,7 @@ def verify_webhook(req):
 def respond(sender, message):
     """Formulate a response to the user and
     pass it on to a function that sends it."""
-    responseList = get_bot_response(message)
+    responseList = get_bot_response(message, sender)
     for response in responseList:
         send_message(sender, response)
     
