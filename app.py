@@ -45,7 +45,7 @@ def get_bot_response(message):
         response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
         gif = "hello"
     elif "calendar" in message or "week" in message:
-        response.append(str(weekCalender))
+        response.append(str(weekCalendar))
         gif = None
     else:
         response.append("Sorry I don't understand")
