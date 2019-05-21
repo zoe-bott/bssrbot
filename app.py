@@ -11,7 +11,7 @@ VERIFY_TOKEN = 'letthebasseriansyeet'# <paste your verify token here>
 PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZAkXboUwTOE61RwkzNbO3kQNtjlZAFhOtZBUt9zbKskKjCdh01Lk6fD0dwLXY7N6c8LxVR76QXFlf0RM6SFYAdflKZC1fYpgJonPziIJlmstlIw2wYbAZDZD'
 
 
-def get_bot_response(message, sender):
+def get_bot_response(message):
     message = message.lower()
     response = []
     current_day = date.today().weekday()
@@ -25,27 +25,27 @@ def get_bot_response(message, sender):
 
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
-        send_gif_message(sender, "what's cooking")
+        gif = "cooking"
     elif "breakfast" in message:
         response.append("For breakfast today is:")
         response.append(todayMenu.breakfast)
-        send_gif_message(sender, "breakfast")
+        gif = "breakfast"
     elif "lunch" in message:
         response.append("For lunch today is:")
         response.append(str(todayMenu.lunch))
-        send_gif_message(sender, "lunch")
+        gif = "lunch"
     elif "dinner" in message:
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
-        send_gif_message(sender, "dinner")
+        gif = "dinner"
     elif "hello" in message or "hi" in message or "help" in message:
         response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
-        send_gif_message(sender, "hello")
+        gif = "hello"
     else:
         response.append("Sorry I don't understand")
-        send_gif_message(sender, "sorry")
+        gif = "I don't understand"
 
-    return response
+    return response, gif
 
 
 def verify_webhook(req):
@@ -57,9 +57,11 @@ def verify_webhook(req):
 def respond(sender, message):
     """Formulate a response to the user and
     pass it on to a function that sends it."""
-    responseList = get_bot_response(message, sender)
+    responseList, gif = get_bot_response(message)
     for response in responseList:
         send_message(sender, response)
+
+    send_gif_message(sender, gif)
     
     
 
