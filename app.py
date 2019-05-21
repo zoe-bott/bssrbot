@@ -29,7 +29,7 @@ def get_bot_response(message):
     elif "breakfast" in message:
         response.append("For breakfast today is:")
         response.append(todayMenu.breakfast)
-        gif = todayMenu.breakfast
+        gif = "breakfast"
     elif "lunch" in message:
         response.append("For lunch today is:")
         response.append(str(todayMenu.lunch))
