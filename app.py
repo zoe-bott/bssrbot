@@ -63,7 +63,9 @@ def checkForDino(message):
 def checkForCalendar(message):
     daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
     response = []
-    weekCalendar = getWeek(2)
+    weekNum = calculateWeekNum()
+    weekCalendar = getWeek(weekNum)
+    gif = None
 
     if "calendar" in message:
         response.append(str(weekCalendar))
@@ -74,7 +76,7 @@ def checkForCalendar(message):
         if day in message:
             reponse.append(f"This is what's on {day.capitalize()}:")
             response.append(weekCalendar[i])
-    return response, None
+    return response, gif
 
 def verify_webhook(req):
     if req.args.get("hub.verify_token") == VERIFY_TOKEN:

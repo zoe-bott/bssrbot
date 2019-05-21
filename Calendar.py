@@ -1,4 +1,7 @@
 from bs4 import BeautifulSoup as BS
+from datetime import date
+
+firstDay = date(2019, 4, 8)
 
 class Week():
     def __init__(self, monday, tuesday, wednesday, thursday, friday, saturday, sunday):
@@ -79,6 +82,12 @@ def getWeek(weekNum):
 
     week = Week(weekList[0], weekList[1], weekList[2], weekList[3], weekList[4], weekList[5], weekList[6])
     return week
+
+def calculateWeekNum():
+    currentDate = date.today()
+    difference = (currentDate - firstDay).days
+    numWeeks = int(difference/7) + 1
+    return numWeeks
 
 
 # print(getWeek(2))
