@@ -35,6 +35,7 @@ def checkForDino(message):
     response = []
     current_day = date.today().weekday()
     todayMenu = getDayMenu(current_day)
+    gif = None
     if "dino" in message:
         response.append("For breakfast today is:")
         response.append(todayMenu.breakfast)
