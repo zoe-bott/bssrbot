@@ -78,9 +78,10 @@ def is_user_message(message):
 
 def search_gif(text):
     #get a GIF that is similar to text sent
-    payload = {'s': text, 'api_key': 'KnoGs32vB6pMxyjAC3V22xWdWenz5asW'}
-    r = requests.get('http://api.giphy.com/v1/gifs/', params=payload)
+    payload = {'s': text, 'api_key': 'KnoGs32vB6pMxyjAC3V22xWdWenz5asW', 'weirdness': 0}
+    r = requests.get('http://api.giphy.com/v1/gifs/translate', params=payload)
     r = r.json()
+    print(r)
     url = r['data']['images']['original']['url']
     print(url)
 
@@ -154,3 +155,4 @@ def send_gif_message(recipient_id, message):
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
                       params=params, headers=headers, data=data)
 
+search_gif("southern fried chicken")
