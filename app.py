@@ -25,19 +25,25 @@ def get_bot_response(message):
 
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
+        send_gif_message(sender, "what's cooking")
     elif "breakfast" in message:
         response.append("For breakfast today is:")
         response.append(todayMenu.breakfast)
+        send_gif_message(sender, "breakfast")
     elif "lunch" in message:
         response.append("For lunch today is:")
         response.append(str(todayMenu.lunch))
+        send_gif_message(sender, "lunch")
     elif "dinner" in message:
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
+        send_gif_message(sender, "dinner")
     elif "hello" in message or "hi" in message or "help" in message:
         response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
+        send_gif_message(sender, "hello")
     else:
         response.append("Sorry I don't understand")
+        send_gif_message(sender, "sorry")
 
     return response
 
@@ -54,7 +60,7 @@ def respond(sender, message):
     responseList = get_bot_response(message)
     for response in responseList:
         send_message(sender, response)
-    send_gif_message(sender, "what's cooking good looking")
+    
     
 
 def is_user_message(message):
