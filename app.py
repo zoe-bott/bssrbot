@@ -1,6 +1,7 @@
 from flask import Flask, request
 import requests
 from datetime import date
+import calendar
 from Menu import *
 from Calendar import *
 import json
@@ -24,7 +25,6 @@ def get_bot_response(message):
         response, gif = checkForDino(message)
     if not response:
         response, gif = checkForCalendar(message)
-         
     if not response:
         response.append("Sorry I don't understand")
         gif = "I don't understand"
@@ -72,7 +72,8 @@ def checkForCalendar(message):
         response.append(str(weekCalendar))
     if "on today" in message:
         current_day = date.today().weekday()
-        response.append(weekCalendar[current_day])
+        dayName = calendar.day_name[current_day].lower()
+        response.append(weekCalendar[dayName])
     for i, day in enumerate(daysOfWeek):
         if day in message:
             reponse.append(f"This is what's on {day.capitalize()}:")
