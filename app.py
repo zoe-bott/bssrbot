@@ -2,6 +2,7 @@ from flask import Flask, request
 import requests
 from datetime import date
 from Menu import *
+from Calendar import *
 import json
 
 app = Flask(__name__)
@@ -16,6 +17,8 @@ def get_bot_response(message):
     response = []
     current_day = date.today().weekday()
     todayMenu = getDayMenu(current_day)
+
+    weekCalendar = getWeek(2)
     if "dino" in message:
         response.append("For breakfast today is:")
         response.append(todayMenu.breakfast)
@@ -37,11 +40,13 @@ def get_bot_response(message):
     elif "dinner" in message:
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
-        gif = todayMenu.dinner.main
-          
+        gif = todayMenu.dinner.main     
     elif "hello" in message or "hi" in message or "help" in message:
         response.append("Hello! Welcome to the Basser Bot! Ask me 'what's for dino' or 'what's for lunch' to get started")
         gif = "hello"
+    elif "calendar" in message or "week" in message:
+        response.append(str(weekCalender))
+        gif = None
     else:
         response.append("Sorry I don't understand")
         gif = "I don't understand"
@@ -61,8 +66,8 @@ def respond(sender, message):
     responseList, gif = get_bot_response(message)
     for response in responseList:
         send_message(sender, response)
-
-    send_gif_message(sender, gif)
+    if gif:
+        send_gif_message(sender, gif)
     
     
 
