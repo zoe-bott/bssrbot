@@ -20,7 +20,7 @@ def get_bot_response(message):
 
     if "hello" in message or "hi" in message or "help" in message:
         response.append("Hello! Welcome to the Basser Bot! I'm here to help you with all your dino and calendar needs.")
-        response.append(f"Here are some example questions:\n1. What's for dino? \n2. What's for lunch today? \n 3. What's the calendar for this week? \n 4. What's happening on Thursday?")
+        response.append(f"Here are some example questions:\n1. What's for dino? \n2. What's for lunch today? \n3. What's the calendar for this week? \n4. What's happening on Thursday?")
         gif = "hello"
     if not response:
         response, gif = checkForDino(message)
@@ -75,6 +75,13 @@ def checkForCalendar(message):
         current_day = date.today().weekday()
         dayName = calendar.day_name[current_day].lower()
         response.append(getattr(weekCalendar, dayName))
+        if current_day == 0:
+            gif = "monday"
+        elif current_day == 2:
+            gif = "coffee"
+        elif current_day == 4:
+            gif = "friday"
+        
     for i, day in enumerate(daysOfWeek):
         if day in message:
             response.append(f"This is what's on {day.capitalize()}:")

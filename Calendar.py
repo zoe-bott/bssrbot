@@ -72,6 +72,8 @@ def getCalendar():
             elif i > 2:
                 if ele == '':
                     ele = "Nothing 🙌"
+                elif ele == 'Coffee Night':
+                    ele = 'Coffee Night ☕🖊️'
                 calendarByWeek[currentWeek].append(ele)
     return calendarByWeek
 
