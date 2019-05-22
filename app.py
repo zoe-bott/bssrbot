@@ -96,9 +96,9 @@ def checkForCalendar(message):
             response.append(f"This is what's on {day.capitalize()}:")
             dayName = calendar.day_name[i].lower()
             response.append(getattr(weekCalendar, dayName))
-    if 'family dinner' in response[0]:
-        gif = 'Family Dinner'
-    elif 'Coffee Night' in response:
+    if 'Family Dinner' in response[0]:
+        gif = 'family dinner'
+    elif 'Coffee Night ☕🖊️' in response:
         gif = 'coffee'
     return response, gif
 
