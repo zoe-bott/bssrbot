@@ -54,11 +54,21 @@ def checkForDino(message):
     elif "lunch" in message:
         response.append("For lunch today is:")
         response.append(str(todayMenu.lunch))
-        gif = todayMenu.lunch.main
+        if "GET KEEN IT'S SANDWICH DAY 🥪🥪" in response:
+            gif = "sandwich"
+        else:
+            gif = todayMenu.lunch.main
     elif "dinner" in message:
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
-        gif = todayMenu.dinner.main
+        if "chef’s choice" in response:
+            gif = "chef"
+        elif "Burger night baby 🍔" in response:
+            gif = "burger"
+        elif "It's pizza and pasta night 🍕!!" in response:
+            gif = "pizza"
+        else:
+            gif = todayMenu.dinner.main
 
     return response, gif
 

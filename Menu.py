@@ -84,7 +84,7 @@ class Dinner():
         elif self.vegetarian == "burger night":
             return(f"Burger night baby 🍔")
         elif self.vegetarian == "pizza pasta night":
-            return(f"*In an Italian accent*\n It's the pizza and the pasta night 🍕")
+            return(f"It's pizza and pasta night 🍕!!")
         else:
             return (f"Main:\n {self.main}\n\n"
                     f"Vegetarian:\n {self.vegetarian}\n\n"
