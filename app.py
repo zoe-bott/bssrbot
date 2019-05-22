@@ -61,7 +61,7 @@ def checkForDino(message):
     elif "dinner" in message:
         response.append("For dinner today is:")
         response.append(str(todayMenu.dinner))
-        if "chef’s choice" in response:
+        if "It's a surprise! It's the chef's choice today 👩‍🍳" in response:
             gif = "chef"
         elif "Burger night baby 🍔" in response:
             gif = "burger"
