@@ -77,16 +77,19 @@ def checkForCalendar(message):
         response.append(getattr(weekCalendar, dayName))
         if current_day == 0:
             gif = "monday"
-        elif current_day == 2:
-            gif = "coffee"
         elif current_day == 4:
-            gif = "friday"
-        
+            gif = "friday"    
+    if "what week" in message:
+        response.append(f'It is week {weekNum}')
     for i, day in enumerate(daysOfWeek):
         if day in message:
             response.append(f"This is what's on {day.capitalize()}:")
             dayName = calendar.day_name[i].lower()
             response.append(getattr(weekCalendar, dayName))
+    if 'family dinner' in response[0] or 'family dinner' in response[1]:
+        gif = 'Family Dinner'
+    elif 'Coffee Night' in response:
+        gif = 'coffee'
     return response, gif
 
 def verify_webhook(req):
