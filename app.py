@@ -8,6 +8,7 @@ from Calendar import *
 import json
 import pyrebase
 import pytz
+import re
 
 
 app = Flask(__name__)
@@ -36,7 +37,7 @@ def get_bot_response(message):
     response = []
     gif = None
 
-    if "hello" in message or "hi" in message or "help" in message:
+    if "hello" in message or "hi " in message or "help" in message:
         response.append("Hello! Welcome to the Basser Bot! I'm here to help you with all your dino and calendar needs.")
         response.append(f"Here are some example questions:\n1. What's for dino? \n2. What's for lunch today? \n3. What's the calendar for this week? \n4. What's happening on Thursday?")
         gif = "hello"
@@ -127,10 +128,18 @@ def checkForShopenLog(message):
     gif = None
     if "good evening, i shall be commencing the opening of shopen today" in message:
         #log that shopen in now open 
-        tz = pytz.timezone('Australia/Sydney') 
+        tz = pytz.timezone('Australia/Sydney')
+
+        name = re.search("[^ -][^-]*$", message)
+        #incorrectly input name
+        if name.start(0) < 10:
+            response = "Unsuccessfull activation of Shopen, Please enter name after a - or ask Batsey"
+            gif = "wtf"
+            return response, gif 
+
         data = {"OpenTimeInSec": time.time(),
         "OpenTime":datetime.now(tz).strftime("%I:%M:%S %p"),
-        "Name": "John AppleSeed"}
+        "Name": name.group(0)}
 
         db.child("Shopen").update(data)
         response.append("Successfully activated Shopen! Shopen will close automatically in 3 hrs")
