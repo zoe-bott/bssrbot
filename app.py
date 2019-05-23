@@ -30,7 +30,6 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 db = firebase.database()
 
 
-
 def get_bot_response(message):
     message = message.lower()
     response = []
