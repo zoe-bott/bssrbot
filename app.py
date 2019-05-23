@@ -7,6 +7,7 @@ from Menu import *
 from Calendar import *
 import json
 import pyrebase
+import pytz
 
 
 app = Flask(__name__)
@@ -125,9 +126,10 @@ def checkForShopenLog(message):
     response = []
     gif = None
     if "good evening, i shall be commencing the opening of shopen today" in message:
-        #log that shopen in now open  
+        #log that shopen in now open 
+        tz = pytz.timezone('Australia/Sydney') 
         data = {"OpenTimeInSec": time.time(),
-        "OpenTime":datetime.now().strftime("%I:%M:%S %p"),
+        "OpenTime":datetime.now(tz).strftime("%I:%M:%S %p"),
         "Name": "John AppleSeed"}
 
         db.child("Shopen").update(data)
