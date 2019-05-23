@@ -133,7 +133,7 @@ def checkForShopenLog(message):
         name = re.search("[^ -][^-]*$", message)
         #incorrectly input name
         if name.start(0) < 10:
-            response = "Unsuccessfull activation of Shopen, Please enter name after a - or ask Batsey"
+            response.append("Unsuccessfull activation of Shopen, Please enter name after a - or ask Batsey")
             gif = "wtf"
             return response, gif 
 
