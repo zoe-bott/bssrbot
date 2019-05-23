@@ -1,16 +1,33 @@
 from flask import Flask, request
 import requests
-from datetime import date
+from datetime import *
+import time
 import calendar
 from Menu import *
 from Calendar import *
 import json
+import pyrebase
+
 
 app = Flask(__name__)
 
 FB_API_URL = 'https://graph.facebook.com/v2.6/me/messages'
 VERIFY_TOKEN = 'letthebasseriansyeet'# <paste your verify token here>
 PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZAkXboUwTOE61RwkzNbO3kQNtjlZAFhOtZBUt9zbKskKjCdh01Lk6fD0dwLXY7N6c8LxVR76QXFlf0RM6SFYAdflKZC1fYpgJonPziIJlmstlIw2wYbAZDZD'
+
+
+firebaseConfig = {
+    "apiKey": "AIzaSyC0DefUGYgP46MIo23Sw_-ODc04h5-AJSU",
+    "authDomain": "bssrbot.firebaseapp.com",
+    "databaseURL": "https://bssrbot.firebaseio.com",
+    "projectId": "bssrbot",
+    "storageBucket": "bssrbot.appspot.com",
+    "messagingSenderId": "598501915047",
+    "appId": "1:598501915047:web:d21aee9382cd478a"
+};
+
+firebase = pyrebase.initialize_app(firebaseConfig)
+db = firebase.database()
 
 
 def get_bot_response(message):
@@ -26,6 +43,8 @@ def get_bot_response(message):
         response, gif = checkForDino(message)
     if not response:
         response, gif = checkForCalendar(message)
+    if not response:
+        response, gif = checkForShopenLog(message)
     if not response:
         response.append("Sorry I don't understand")
         gif = "I don't understand"
@@ -100,6 +119,26 @@ def checkForCalendar(message):
         gif = 'family dinner'
     elif 'Coffee Night ☕🖊️' in response:
         gif = 'coffee'
+    return response, gif
+
+def checkForShopenLog(message):
+    response = []
+    gif = None
+    if message == "Good Evening, I shall be commencing the opening of Shopen today":
+        #log that shopen in now open  
+        data = {"OpenTimeInSec": time.time(),
+        "OpenTime":datetime.now().strftime("%I:%M:%S %p"),
+        "Name": "John AppleSeed"}
+
+        db.child("Shopen").update(data)
+        response = ["Logged!"]
+        gif = "Yay!"
+
+    elif "shopen" in message:
+        #access firebase to see if shopen is open!
+        pass
+
+
     return response, gif
 
 def verify_webhook(req):
