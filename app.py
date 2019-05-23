@@ -115,7 +115,7 @@ def checkForCalendar(message):
             response.append(f"This is what's on {day.capitalize()}:")
             dayName = calendar.day_name[i].lower()
             response.append(getattr(weekCalendar, dayName))
-    if 'Family Dinner' in response[0]:
+    if 'Family Dinner' in response:
         gif = 'family dinner'
     elif 'Coffee Night ☕🖊️' in response:
         gif = 'coffee'
@@ -137,7 +137,6 @@ def checkForShopenLog(message):
     elif "shopen" in message:
         #access firebase to see if shopen is open!
         pass
-
 
     return response, gif
 
