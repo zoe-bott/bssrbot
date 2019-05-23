@@ -124,7 +124,7 @@ def checkForCalendar(message):
 def checkForShopenLog(message):
     response = []
     gif = None
-    if message == "Good Evening, I shall be commencing the opening of Shopen today":
+    if "Good Evening, I shall be commencing the opening of Shopen today" in message:
         #log that shopen in now open  
         data = {"OpenTimeInSec": time.time(),
         "OpenTime":datetime.now().strftime("%I:%M:%S %p"),
