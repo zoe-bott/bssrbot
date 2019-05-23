@@ -125,7 +125,7 @@ def checkForShopenLog(message):
     response = []
     gif = None
     print(message)
-    if "Good Evening, I shall be commencing the opening of Shopen today" in message:
+    if "good evening, i shall be commencing the opening of shopen today" in message:
         #log that shopen in now open  
         data = {"OpenTimeInSec": time.time(),
         "OpenTime":datetime.now().strftime("%I:%M:%S %p"),
