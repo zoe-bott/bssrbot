@@ -124,6 +124,7 @@ def checkForCalendar(message):
 def checkForShopenLog(message):
     response = []
     gif = None
+    print(message)
     if "Good Evening, I shall be commencing the opening of Shopen today" in message:
         #log that shopen in now open  
         data = {"OpenTimeInSec": time.time(),
@@ -131,7 +132,7 @@ def checkForShopenLog(message):
         "Name": "John AppleSeed"}
 
         db.child("Shopen").update(data)
-        response = ["Logged!"]
+        response.append("Logged")
         gif = "Yay!"
 
     elif "shopen" in message:
