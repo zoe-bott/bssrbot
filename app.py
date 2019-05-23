@@ -135,7 +135,9 @@ def checkForShopenLog(message):
         db.child("Shopen").update(data)
         response.append("Successfully activated Shopen! Shopen will close automatically in 3 hrs")
         gif = "Yay!"
-
+    elif "good evening, i shall now be closing el shopen" in message:
+        #create authentication so only person who opened shop can close it
+        pass
     elif "shopen" in message:
         #access firebase to see if shopen is open!
         shopenData = db.child("Shopen").get()
@@ -177,8 +179,6 @@ def respond(sender, message):
     if gif:
         send_gif_message(sender, gif)
     
-    
-
 def is_user_message(message):
     """Check if the message is a message from the user"""
     return (message.get('message') and
@@ -209,6 +209,7 @@ def listen():
     if request.method == 'POST':
         payload = request.json
         event = payload['entry'][0]['messaging']
+        print(payload)
         for x in event:
             if is_user_message(x):
                 text = x['message']['text']
