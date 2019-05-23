@@ -30,6 +30,7 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 db = firebase.database()
 
 
+
 def get_bot_response(message):
     message = message.lower()
     response = []
@@ -124,7 +125,6 @@ def checkForCalendar(message):
 def checkForShopenLog(message):
     response = []
     gif = None
-    print(message)
     if "good evening, i shall be commencing the opening of shopen today" in message:
         #log that shopen in now open  
         data = {"OpenTimeInSec": time.time(),
@@ -132,13 +132,33 @@ def checkForShopenLog(message):
         "Name": "John AppleSeed"}
 
         db.child("Shopen").update(data)
-        response.append("Logged")
+        response.append("Successfully activated Shopen! Shopen will close automatically in 3 hrs")
         gif = "Yay!"
 
     elif "shopen" in message:
         #access firebase to see if shopen is open!
-        pass
+        shopenData = db.child("Shopen").get()
+        if shopenData.val() is not None:
+            timeInSecs = shopenData.val()["OpenTimeInSec"]
+            
+            #shop has already been open for 3 hrs autoclose it
+            if (time.time() - timeInSecs) > 10800:
+                db.child("Shopen").remove()
+                response.append("Shopen ain't open, grab the shop key from Batsey lolz")
+                gif = "Sad"
+                return response, gif
 
+            openTime = shopenData.val()["OpenTime"]
+            shopenPerson = shopenData.val()["Name"]
+            response.append(f"Shopen opened at {openTime}")
+            response.append(f"{shopenPerson} is on shopen")
+
+            gif = "Yay"
+
+        else:
+            response.append("Shopen ain't open, grab the shop key from Batsey lolz")
+            gif = "Sad"
+    
     return response, gif
 
 def verify_webhook(req):
