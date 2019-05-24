@@ -1,7 +1,10 @@
-from datetime import date
+from datetime import *
 import calendar
 from bs4 import BeautifulSoup as BS
 import re
+import pytz
+
+TIMEZONE = pytz.timezone('Australia/Sydney')
 
 class Day():
     def __init__(self, breakfast, lunch, dinner):
@@ -129,7 +132,7 @@ def getDayMenu(day):
 
 
 if __name__ == '__main__':
-    current_day = date.today().weekday()
+    current_day = datetime.now(TIMEZONE).weekday()
     print(getDayMenu(2))
     # for i in range(7):
     #     print(getDayMenu(i))

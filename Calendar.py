@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup as BS
-from datetime import date
+from datetime import *
+import pytz
+
+TIMEZONE = pytz.timezone('Australia/Sydney')
 
 firstDay = date(2019, 4, 8)
 
@@ -86,7 +89,7 @@ def getWeek(weekNum):
     return week
 
 def calculateWeekNum():
-    currentDate = date.today()
+    currentDate = datetime.now(TIMEZONE).date()
     difference = (currentDate - firstDay).days
     numWeeks = int(difference/7) + 1
     return numWeeks
