@@ -118,8 +118,10 @@ def checkForCalendar(message):
             gif = "monday"
         elif current_day == 4:
             gif = "friday"        
-    if "on tomorrow" in message:
-        tomorrow = (date.today().weekday() + 1)%4
+    if "on tomorrow" in message:        
+        tomorrow = (date.today().weekday() + 1)
+        if tomorrow == 7:
+            tomorrow = 0
         dayName = calendar.day_name[tomorrow].lower()
         response.append(getattr(weekCalendar, dayName))
         if tomorrow == 0:
