@@ -8,14 +8,13 @@ from Calendar import *
 import json
 import pyrebase
 import pytz
-
+import re
 
 app = Flask(__name__)
 
 FB_API_URL = 'https://graph.facebook.com/v2.6/me/messages'
 VERIFY_TOKEN = 'letthebasseriansyeet'
 PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZAkXboUwTOE61RwkzNbO3kQNtjlZAFhOtZBUt9zbKskKjCdh01Lk6fD0dwLXY7N6c8LxVR76QXFlf0RM6SFYAdflKZC1fYpgJonPziIJlmstlIw2wYbAZDZD'
-
 
 firebaseConfig = {
     "apiKey": "AIzaSyC0DefUGYgP46MIo23Sw_-ODc04h5-AJSU",
@@ -36,7 +35,7 @@ def get_bot_response(message):
     response = []
     gif = None
 
-    if "hello" in message or "hi" in message or "help" in message:
+    if checkIfGreeting(message) or message == "hi" or message == "hey":
         response.append("Hello! Welcome to the Basser Bot! I'm here to help you with all your dino and calendar needs.")
         response.append(f"Here are some example questions:\n1. What's for dino? \n2. What's for lunch today? \n3. What's the calendar for this week? \n4. What's happening on Thursday?")
         gif = "hello"
@@ -47,10 +46,20 @@ def get_bot_response(message):
     if not response:
         response, gif = checkForShopenLog(message)
     if not response:
-        response.append("Sorry I don't understand")
+        response, gif = checkForEasterEggs(message)
+    if not response:
+        response.append("Sorry I don't understand, send 'help' for options")
         gif = "I don't understand"
 
     return response, gif
+
+def checkIfGreeting(message):
+    possibleGreetings = ["hello", "hi ", "help", "hey "]
+    for el in possibleGreetings:
+        if el in message:
+            return True        
+    return False
+
 
 def checkForDino(message):
     response = []
@@ -108,7 +117,17 @@ def checkForCalendar(message):
         if current_day == 0:
             gif = "monday"
         elif current_day == 4:
-            gif = "friday"    
+            gif = "friday"        
+    if "on tomorrow" in message:        
+        tomorrow = (date.today().weekday() + 1)
+        if tomorrow == 7:
+            tomorrow = 0
+        dayName = calendar.day_name[tomorrow].lower()
+        response.append(getattr(weekCalendar, dayName))
+        if tomorrow == 0:
+            gif = "monday"
+        elif tomorrow == 4:
+            gif = "friday"   
     if "what week" in message:
         response.append(f'It is week {weekNum}')
     for i, day in enumerate(daysOfWeek):
@@ -127,10 +146,18 @@ def checkForShopenLog(message):
     gif = None
     if "good evening, i shall be commencing the opening of shopen today" in message:
         #log that shopen in now open 
-        tz = pytz.timezone('Australia/Sydney') 
+        tz = pytz.timezone('Australia/Sydney')
+
+        name = re.search("[^ -][^-]*$", message)
+        #incorrectly input name
+        if name.start(0) < 10:
+            response.append("Unsuccessfull activation of Shopen, Please enter name after a - or ask Batsey")
+            gif = "wtf"
+            return response, gif 
+
         data = {"OpenTimeInSec": time.time(),
         "OpenTime":datetime.now(tz).strftime("%I:%M:%S %p"),
-        "Name": "John AppleSeed"}
+        "Name": name.group(0)}
 
         db.child("Shopen").update(data)
         response.append("Successfully activated Shopen! Shopen will close automatically in 3 hrs")
@@ -161,6 +188,26 @@ def checkForShopenLog(message):
         else:
             response.append("Shopen ain't open, grab the shop key from Batsey lolz")
             gif = "Sad"
+    
+    return response, gif
+
+def checkForEasterEggs(message):
+    response = []
+    gif = None
+
+    if ("tall" in message or "height" in message) and ("sam" in message or "bensley" in message):
+        response.append("6 foot")
+    elif "bssrprdctns" in message or "basser productions" in message:
+        response.append("Huge Content Coming Soon!")
+    elif "dean" in message and "deputy" in message:
+        response.append("THE DEPUTYYYY DEANNNNN")
+        gif = "salute"
+    elif "sam bensley" in message or "zoe bott" in message:
+        response.append("did you mean: 'sexy alpha coders'")
+    elif "Easter Egg" in message:
+        response.append("go find em")
+    elif "baxter" in message or "goldstein" in message:
+        response.append("Basser > Baxter & Goldstein")
     
     return response, gif
 
@@ -209,7 +256,6 @@ def listen():
     if request.method == 'POST':
         payload = request.json
         event = payload['entry'][0]['messaging']
-        print(payload)
         for x in event:
             if is_user_message(x):
                 text = x['message']['text']
