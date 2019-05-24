@@ -196,7 +196,10 @@ def checkForEasterEggs(message):
     gif = None
 
     if ("tall" in message or "height" in message) and ("sam" in message or "bensley" in message):
-        response.append("6 foot")
+        if "really" in message:
+            response.append("*cough* 5`11")
+        else:
+            response.append("6 foot")
     elif "bssrprdctns" in message or "basser productions" in message:
         response.append("Huge Content Coming Soon!")
     elif "dean" in message and "deputy" in message:
@@ -206,8 +209,13 @@ def checkForEasterEggs(message):
         response.append("did you mean: 'sexy alpha coders'")
     elif "Easter Egg" in message:
         response.append("go find em")
+        gif = "easter egg"
     elif "baxter" in message or "goldstein" in message:
         response.append("Basser > Baxter & Goldstein")
+        gif = "dab"
+    elif "who would win in a fight" in message:
+        person = message.split('')[6]
+        response.append(f"{person} would win.")
     
     return response, gif
 
