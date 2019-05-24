@@ -26,9 +26,9 @@ firebaseConfig = {
     "appId": "1:598501915047:web:d21aee9382cd478a"
 };
 
+
 firebase = pyrebase.initialize_app(firebaseConfig)
 db = firebase.database()
-
 
 def get_bot_response(message):
     message = message.lower()
@@ -63,7 +63,8 @@ def checkIfGreeting(message):
 
 def checkForDino(message):
     response = []
-    current_day = date.today().weekday()
+    tz = pytz.timezone('Australia/Sydney')
+    current_day = datetime.now(tz).weekday()
     todayMenu = getDayMenu(current_day)
     gif = None
     if "dino" in message:
@@ -101,6 +102,7 @@ def checkForDino(message):
 
     return response, gif
 
+
 def checkForCalendar(message):
     daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
     response = []
@@ -111,7 +113,8 @@ def checkForCalendar(message):
     if "calendar" in message:
         response.append(str(weekCalendar))
     if "on today" in message:
-        current_day = date.today().weekday()
+        tz = pytz.timezone('Australia/Sydney')
+        current_day = datetime.now(tz).weekday()
         dayName = calendar.day_name[current_day].lower()
         response.append(getattr(weekCalendar, dayName))
         if current_day == 0:
@@ -119,7 +122,8 @@ def checkForCalendar(message):
         elif current_day == 4:
             gif = "friday"        
     if "on tomorrow" in message:        
-        tomorrow = (date.today().weekday() + 1)
+        tz = pytz.timezone('Australia/Sydney')
+        tomorrow = (datetime.now(tz).weekday() + 1)
         if tomorrow == 7:
             tomorrow = 0
         dayName = calendar.day_name[tomorrow].lower()
