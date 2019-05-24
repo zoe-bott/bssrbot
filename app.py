@@ -10,13 +10,11 @@ import pyrebase
 import pytz
 import re
 
-
 app = Flask(__name__)
 
 FB_API_URL = 'https://graph.facebook.com/v2.6/me/messages'
 VERIFY_TOKEN = 'letthebasseriansyeet'# <paste your verify token here>
 PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZAkXboUwTOE61RwkzNbO3kQNtjlZAFhOtZBUt9zbKskKjCdh01Lk6fD0dwLXY7N6c8LxVR76QXFlf0RM6SFYAdflKZC1fYpgJonPziIJlmstlIw2wYbAZDZD'
-
 
 firebaseConfig = {
     "apiKey": "AIzaSyC0DefUGYgP46MIo23Sw_-ODc04h5-AJSU",
@@ -37,7 +35,7 @@ def get_bot_response(message):
     response = []
     gif = None
 
-    if "hello" in message or "hi " in message or "help" in message:
+    if checkIfGreeting(message) or message == "hi" or message == "hey":
         response.append("Hello! Welcome to the Basser Bot! I'm here to help you with all your dino and calendar needs.")
         response.append(f"Here are some example questions:\n1. What's for dino? \n2. What's for lunch today? \n3. What's the calendar for this week? \n4. What's happening on Thursday?")
         gif = "hello"
@@ -48,10 +46,20 @@ def get_bot_response(message):
     if not response:
         response, gif = checkForShopenLog(message)
     if not response:
-        response.append("Sorry I don't understand")
+        response, gif = checkForEasterEggs(message)
+    if not response:
+        response.append("Sorry I don't understand, send 'help' for options")
         gif = "I don't understand"
 
     return response, gif
+
+def checkIfGreeting(message):
+    possibleGreetings = ["hello", "hi ", "help", "hey "]
+    for el in possibleGreetings:
+        if el in message:
+            return True        
+    return False
+
 
 def checkForDino(message):
     response = []
@@ -173,6 +181,19 @@ def checkForShopenLog(message):
     
     return response, gif
 
+def checkForEasterEggs(message):
+    response = []
+    gif = None
+
+    if ("tall" in message or "height" in message) and ("sam" in message or "bensley" in message):
+        response.append("6 foot")
+    if "bssrprdctns" in message or "basser productions" in message:
+        respond.append("Huge Content Coming Soon!")
+    if "dean" in message and "deputy" in message:
+        respond.append("THE DEPUTYYYY DEANNNNN")
+        gif = "salute"
+    return response, gif
+
 def verify_webhook(req):
     if req.args.get("hub.verify_token") == VERIFY_TOKEN:
         return req.args.get("hub.challenge")
@@ -218,7 +239,6 @@ def listen():
     if request.method == 'POST':
         payload = request.json
         event = payload['entry'][0]['messaging']
-        print(payload)
         for x in event:
             if is_user_message(x):
                 text = x['message']['text']
