@@ -188,9 +188,9 @@ def checkForEasterEggs(message):
     if ("tall" in message or "height" in message) and ("sam" in message or "bensley" in message):
         response.append("6 foot")
     if "bssrprdctns" in message or "basser productions" in message:
-        respond.append("Huge Content Coming Soon!")
+        response.append("Huge Content Coming Soon!")
     if "dean" in message and "deputy" in message:
-        respond.append("THE DEPUTYYYY DEANNNNN")
+        response.append("THE DEPUTYYYY DEANNNNN")
         gif = "salute"
     return response, gif
 
