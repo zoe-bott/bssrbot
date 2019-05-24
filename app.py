@@ -214,9 +214,11 @@ def checkForEasterEggs(message):
         response.append("Basser > Baxter & Goldstein")
         gif = "dab"
     elif "who would win in a fight" in message:
-        person = message.split('')[6]
-        response.append(f"{person} would win.")
-    
+        try:
+            person = message.split('')[6]
+            response.append(f"{person} would win.")
+        except:
+            response.append("Between who?")
     return response, gif
 
 def verify_webhook(req):
