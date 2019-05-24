@@ -16,6 +16,8 @@ FB_API_URL = 'https://graph.facebook.com/v2.6/me/messages'
 VERIFY_TOKEN = 'letthebasseriansyeet'
 PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZAkXboUwTOE61RwkzNbO3kQNtjlZAFhOtZBUt9zbKskKjCdh01Lk6fD0dwLXY7N6c8LxVR76QXFlf0RM6SFYAdflKZC1fYpgJonPziIJlmstlIw2wYbAZDZD'
 
+TIMEZONE = pytz.timezone('Australia/Sydney')
+
 firebaseConfig = {
     "apiKey": "AIzaSyC0DefUGYgP46MIo23Sw_-ODc04h5-AJSU",
     "authDomain": "bssrbot.firebaseapp.com",
@@ -63,8 +65,7 @@ def checkIfGreeting(message):
 
 def checkForDino(message):
     response = []
-    tz = pytz.timezone('Australia/Sydney')
-    current_day = datetime.now(tz).weekday()
+    current_day = datetime.now(TIMEZONE).weekday()
     todayMenu = getDayMenu(current_day)
     gif = None
     if "dino" in message:
@@ -113,8 +114,7 @@ def checkForCalendar(message):
     if "calendar" in message:
         response.append(str(weekCalendar))
     if "on today" in message:
-        tz = pytz.timezone('Australia/Sydney')
-        current_day = datetime.now(tz).weekday()
+        current_day = datetime.now(TIMEZONE).weekday()
         dayName = calendar.day_name[current_day].lower()
         response.append(getattr(weekCalendar, dayName))
         if current_day == 0:
@@ -122,8 +122,7 @@ def checkForCalendar(message):
         elif current_day == 4:
             gif = "friday"        
     if "on tomorrow" in message:        
-        tz = pytz.timezone('Australia/Sydney')
-        tomorrow = (datetime.now(tz).weekday() + 1)
+        tomorrow = (datetime.now(TIMEZONE).weekday() + 1)
         if tomorrow == 7:
             tomorrow = 0
         dayName = calendar.day_name[tomorrow].lower()
@@ -150,7 +149,6 @@ def checkForShopenLog(message):
     gif = None
     if "good evening, i shall be commencing the opening of shopen today" in message:
         #log that shopen in now open 
-        tz = pytz.timezone('Australia/Sydney')
 
         name = re.search("[^ -][^-]*$", message)
         #incorrectly input name
@@ -160,7 +158,7 @@ def checkForShopenLog(message):
             return response, gif 
 
         data = {"OpenTimeInSec": time.time(),
-        "OpenTime":datetime.now(tz).strftime("%I:%M:%S %p"),
+        "OpenTime":datetime.now(TIMEZONE).strftime("%I:%M:%S %p"),
         "Name": name.group(0)}
 
         db.child("Shopen").update(data)
