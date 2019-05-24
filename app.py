@@ -117,7 +117,15 @@ def checkForCalendar(message):
         if current_day == 0:
             gif = "monday"
         elif current_day == 4:
-            gif = "friday"    
+            gif = "friday"        
+    if "on tomorrow" in message:
+        tomorrow = (date.today().weekday() + 1)%4
+        dayName = calendar.day_name[tomorrow].lower()
+        response.append(getattr(weekCalendar, dayName))
+        if tomorrow == 0:
+            gif = "monday"
+        elif tomorrow == 4:
+            gif = "friday"   
     if "what week" in message:
         response.append(f'It is week {weekNum}')
     for i, day in enumerate(daysOfWeek):
@@ -187,11 +195,18 @@ def checkForEasterEggs(message):
 
     if ("tall" in message or "height" in message) and ("sam" in message or "bensley" in message):
         response.append("6 foot")
-    if "bssrprdctns" in message or "basser productions" in message:
+    elif "bssrprdctns" in message or "basser productions" in message:
         response.append("Huge Content Coming Soon!")
-    if "dean" in message and "deputy" in message:
+    elif "dean" in message and "deputy" in message:
         response.append("THE DEPUTYYYY DEANNNNN")
         gif = "salute"
+    elif "sam bensley" in message or "zoe bott" in message:
+        response.append("did you mean: 'sexy alpha coders'")
+    elif "Easter Egg" in message:
+        response.append("go find em")
+    elif "baxter" in message or "goldstein" in message:
+        response.append("Basser > Baxter & Goldstein")
+    
     return response, gif
 
 def verify_webhook(req):
