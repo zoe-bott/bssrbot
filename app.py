@@ -281,15 +281,30 @@ def listen():
 
 def send_message(recipient_id, text):
     """Send a response to Facebook"""
-    payload = {
+    payload = json.dumps({
         'message': {
-            'text': text
+            'text': text, 
+            'quick_replies': [{
+                        'content_type': 'text',
+                        'title': 'Whats on tomorrow',
+                        'payload': 'whats on tomorrow'
+                    },
+                    {
+                        'content_type': 'text',
+                        'title': 'Whats Dino',
+                        'payload': 'whats dino'
+                    },
+                    {
+                        'content_type': 'text',
+                        'title': 'Calendar',
+                        'payload': 'calendar'
+                    }]
         },
         'recipient': {
             'id': recipient_id
         },
         'notification_type': 'regular'
-    }
+    })
 
     auth = {
         'access_token': PAGE_ACCESS_TOKEN
@@ -298,7 +313,7 @@ def send_message(recipient_id, text):
     response = requests.post(
         FB_API_URL,
         params=auth,
-        json=payload
+        data=payload
     )
 
     return response.json()
@@ -325,5 +340,5 @@ def send_gif_message(recipient_id, message):
         "Content-Type": "application/json"
     }
 
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-                      params=params, headers=headers, data=data)
+    #r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+                      #params=params, headers=headers, data=data)
