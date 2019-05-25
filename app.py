@@ -283,7 +283,12 @@ def send_message(recipient_id, text):
     """Send a response to Facebook"""
     payload = {
         'message': {
-            'text': text
+            'text': text, 
+            "quick_replies":{
+                "content_type":"text",
+                "title":"What's for Dino",
+                "payload":"What's for Dino"
+            }
         },
         'recipient': {
             'id': recipient_id
@@ -327,3 +332,4 @@ def send_gif_message(recipient_id, message):
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
                       params=params, headers=headers, data=data)
+
