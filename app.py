@@ -26,7 +26,7 @@ firebaseConfig = {
     "storageBucket": "bssrbot.appspot.com",
     "messagingSenderId": "598501915047",
     "appId": "1:598501915047:web:d21aee9382cd478a"
-};
+}
 
 
 firebase = pyrebase.initialize_app(firebaseConfig)
@@ -221,7 +221,7 @@ def checkForEasterEggs(message):
     elif "who would win in a fight" in message:
         try:
             person = message.split(' ')[6]
-            response.append(f"{person} would win.")
+            response.append(f"{person.capitalize()} would clearly win.")
         except:
             response.append("Between who?")
     return response, gif
