@@ -232,6 +232,8 @@ def checkForEasterEggs(message):
         gif = "dracarys"
     elif "wam" in message and "jodie" in message:
         response.append("Higher than yours")
+    elif "meme" in message:
+        gif = "meme"
     elif "who would win in a fight" in message:
         try:
             person = message.split(' ')[6]
