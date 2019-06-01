@@ -54,7 +54,6 @@ def get_bot_response(message):
         response, gif = checkForEasterEggs(message)
     if not response:
         response.append("Sorry I don't understand, send 'help' for options")
-        gif = "I don't understand"
 
     return response, gif
 
@@ -233,7 +232,7 @@ def checkForEasterEggs(message):
     elif "wam" in message and "jodie" in message:
         response.append("Higher than yours")
     elif "meme" in message:
-        response = ""
+        response.append("")
         gif = "meme"
     elif "who would win in a fight" in message:
         try:
