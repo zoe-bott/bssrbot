@@ -215,8 +215,11 @@ def checkForEasterEggs(message):
     elif "Easter Egg" in message:
         response.append("go find em")
         gif = "easter egg"
-    elif "baxter" in message or "goldstein" in message:
-        response.append("Basser > Baxter & Goldstein")
+    elif "baxter" in message:
+        response.append("Get rekt Baxter")
+        gif = "get rekt"
+    elif "goldstein" in message:
+        response.append("Basser is better")
         gif = "dab"
     elif "who would win in a fight" in message:
         try:
