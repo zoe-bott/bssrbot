@@ -212,7 +212,7 @@ def checkForEasterEggs(message):
         gif = "salute"
     elif "sam bensley" in message or "zoe bott" in message:
         response.append("did you mean: 'sexy alpha coders'")
-    elif "Easter Egg" in message:
+    elif "easter egg" in message:
         response.append("go find em")
         gif = "easter egg"
     elif "baxter" in message:
@@ -221,12 +221,17 @@ def checkForEasterEggs(message):
     elif "goldstein" in message:
         response.append("Basser is better")
         gif = "dab"
+    elif "baxtabot" in message:
+        response.append("Do you mean: 'less inferior bot'?")
+        gif = "sorry not sorry"
     elif "zali" in message or "president" in message:
         response.append("Madame president")
         gif = "donald trump"
-    elif "matthew" in message or "batesy" in message or "bates" in message or "matt" in message or "batsos" in message:
+    elif "matthew" in message or "batesy" in message or "bates" in message or "matt" in message or "batesos" in message:
         response.append("Daenerys of the House Targaryen, the First of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men, Queen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm, Lady Regent of the Seven Kingdoms, Breaker of Chains and Mother of Dragons")
         gif = "dracarys"
+    elif "wam" in message and "jodie" in message:
+        response.append("Higher than yours")
     elif "who would win in a fight" in message:
         try:
             person = message.split(' ')[6]
