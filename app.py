@@ -113,7 +113,7 @@ def checkForCalendar(message):
     weekCalendar = getWeek(weekNum)
     gif = None
 
-    if "calendar" in message:
+    if "calendar" in message or "this week" in message:
         response.append(str(weekCalendar))
     if "on today" in message:
         current_day = datetime.now(TIMEZONE).weekday()
