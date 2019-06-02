@@ -96,4 +96,5 @@ def calculateWeekNum():
     return numWeeks
 
 
-# print(getWeek(2))
+if __name__ == "__main__":
+    print(getWeek(1))
