@@ -239,7 +239,7 @@ def checkForEasterEggs(message):
             person = message.split(' ')[6]
             response.append(f"{person.capitalize()} would clearly win.")
         except:
-            response.append("Between who?")
+            response.append("Between who?") 
     return response, gif
 
 def verify_webhook(req):
@@ -271,7 +271,7 @@ def search_gif(text):
     # sprint(r)
     try:
         url = r['data']['images']['original']['url']
-    except:
+    except
         print('failed to get gif')
 
     return url
