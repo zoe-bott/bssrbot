@@ -4,7 +4,7 @@ import pytz
 
 TIMEZONE = pytz.timezone('Australia/Sydney')
 
-firstDay = date(2019, 4, 8)
+firstDay = date(2019, 6, 3)
 
 class Week():
     def __init__(self, monday, tuesday, wednesday, thursday, friday, saturday, sunday):
