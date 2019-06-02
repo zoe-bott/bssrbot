@@ -271,7 +271,7 @@ def search_gif(text):
     # sprint(r)
     try:
         url = r['data']['images']['original']['url']
-    except
+    except:
         print('failed to get gif')
 
     return url
