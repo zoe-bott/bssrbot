@@ -66,7 +66,7 @@ def getCalendar():
         for i, col in enumerate(cols):
             ele = col.text.strip()
             # ele = ele.replace('\n', ' ')
-            ele = ele.replace('</br>', '\n')
+            ele = ele.replace('<br />', '\n')
             # print(repr(ele))
             ele = ele.replace(' \xa0', ' and ')
             if i == 0:
