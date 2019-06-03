@@ -49,7 +49,7 @@ class Lunch():
         return self._salad
 
     def __str__(self):
-        if self.veg == "sandwich bar":
+        if "sandwich bar" in self.veg:
             return("GET KEEN IT'S SANDWICH DAY 🥪🥪")
         elif self.main == "selection of brunch items with pastries & extras":
             return("selection of brunch items with pastries & extras")
