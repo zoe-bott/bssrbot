@@ -12,6 +12,7 @@ import re
 
 app = Flask(__name__)
 
+
 FB_API_URL = 'https://graph.facebook.com/v2.6/me/messages'
 VERIFY_TOKEN = 'letthebasseriansyeet'
 PAGE_ACCESS_TOKEN = 'EAAidPSNIxU0BAAvOOuFF9VZAoQWqENQLMxGPC36A67YXcJfCZCVKNeUpZAkXboUwTOE61RwkzNbO3kQNtjlZAFhOtZBUt9zbKskKjCdh01Lk6fD0dwLXY7N6c8LxVR76QXFlf0RM6SFYAdflKZC1fYpgJonPziIJlmstlIw2wYbAZDZD'
@@ -159,7 +160,7 @@ def checkForShopenLog(message):
             gif = "wtf"
             return response, gif 
 
-        data = {"OpenTimeInSec": time.time(),
+        data = {"OpenTimeInSec": datetime.now().timestamp(),
         "OpenTime":datetime.now(TIMEZONE).strftime("%I:%M:%S %p"),
         "Name": name.group(0)}
 
@@ -176,7 +177,7 @@ def checkForShopenLog(message):
             timeInSecs = shopenData.val()["OpenTimeInSec"]
             
             #shop has already been open for 3 hrs autoclose it
-            if (time.time() - timeInSecs) > 10800:
+            if (datetime.now().timestamp() - timeInSecs) > 7200:
                 db.child("Shopen").remove()
                 response.append("Shopen ain't open soz, go get your snacks elsewhere :(")
                 gif = "Sad"
