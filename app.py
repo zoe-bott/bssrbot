@@ -176,7 +176,7 @@ def checkForShopenLog(message):
             timeInSecs = shopenData.val()["OpenTimeInSec"]
             
             #shop has already been open for 3 hrs autoclose it
-            if (time.time() - timeInSecs) > 10800:
+            if (time.time() - timeInSecs) > 7200:
                 db.child("Shopen").remove()
                 response.append("Shopen ain't open, grab the shop key from Batsey lolz")
                 gif = "Sad"
