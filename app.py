@@ -113,7 +113,7 @@ def checkForCalendar(message):
     weekCalendar = getWeek(weekNum)
     gif = None
 
-    if "calendar" in message:
+    if "calendar" in message or "this week" in message:
         response.append(str(weekCalendar))
     if "on today" in message:
         current_day = datetime.now(TIMEZONE).weekday()
@@ -239,7 +239,13 @@ def checkForEasterEggs(message):
             person = message.split(' ')[6]
             response.append(f"{person.capitalize()} would clearly win.")
         except:
-            response.append("Between who?")
+            response.append("Between who?") 
+    elif "luke venter" in message:
+        response.append("Yes absolutely, a legend.")
+        gif = "eyebrow raise" 
+    elif "sharpie is a dumb fuck" in message:
+        response.append("Yes yes yes!")
+        gif = "yes"
     return response, gif
 
 def verify_webhook(req):

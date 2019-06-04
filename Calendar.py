@@ -4,7 +4,7 @@ import pytz
 
 TIMEZONE = pytz.timezone('Australia/Sydney')
 
-firstDay = date(2019, 4, 8)
+firstDay = date(2019, 6, 3)
 
 class Week():
     def __init__(self, monday, tuesday, wednesday, thursday, friday, saturday, sunday):
@@ -65,7 +65,8 @@ def getCalendar():
         cols = row.find_all('td')
         for i, col in enumerate(cols):
             ele = col.text.strip()
-            ele = ele.replace('\n', ' ')
+            # ele = ele.replace('\n', ' ')
+            ele = ele.replace('<br />', '\n')
             # print(repr(ele))
             ele = ele.replace(' \xa0', ' and ')
             if i == 0:
@@ -95,4 +96,5 @@ def calculateWeekNum():
     return numWeeks
 
 
-# print(getWeek(2))
+if __name__ == "__main__":
+    print(getWeek(1))
