@@ -191,7 +191,7 @@ def checkForShopenLog(message):
             gif = "Yay"
 
         else:
-            response.append("Shopen ain't open, grab the shop key from Batsey lolz")
+            response.append("Shopen ain't open soz, go get your snacks elsewhere :(")
             gif = "Sad"
     
     return response, gif
