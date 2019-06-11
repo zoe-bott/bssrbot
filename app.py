@@ -191,7 +191,7 @@ def checkForShopenLog(message):
             openTime = shopenData.val()["OpenTime"]
             shopenPerson = shopenData.val()["Name"]
             response.append(f"Shopen opened at {openTime}")
-            response.append(f"{shopenPerson} is on shopen")
+            response.append(f"{shopenPerson} is on shopen!")
 
             gif = "Yay"
 
@@ -246,12 +246,6 @@ def checkForEasterEggs(message):
             response.append(f"{person.capitalize()} would clearly win.")
         except:
             response.append("Between who?") 
-    elif "luke venter" in message:
-        response.append("Yes absolutely, a legend.")
-        gif = "eyebrow raise" 
-    elif "sharpie is a dumb fuck" in message:
-        response.append("Yes yes yes!")
-        gif = "yes"
     return response, gif
 
 def verify_webhook(req):
