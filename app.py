@@ -69,17 +69,22 @@ def checkIfGreeting(message):
 def checkForDino(message):
     response = []
     current_day = datetime.now(TIMEZONE).weekday()
+    time = datetime.now(TIMEZONE).time().hour
     todayMenu = getDayMenu(current_day)
     gif = None
     if "dino" in message:
-        response.append("For breakfast today is:")
-        response.append(todayMenu.breakfast)
-
-        response.append("For lunch today is:")
-        response.append(str(todayMenu.lunch))
-
-        response.append("For dinner today is:")
-        response.append(str(todayMenu.dinner))
+    
+        if time < 10:
+            response.append("For breakfast today is:")
+            response.append(todayMenu.breakfast)
+        if time < 2:
+            response.append("For lunch today is:")
+            response.append(str(todayMenu.lunch))
+        if time < 19:
+            response.append("For dinner today is:")
+            response.append(str(todayMenu.dinner))
+        if not response: 
+            response.append("No more meals today :)")
         gif = "dog animals eating dinner"
     elif "breakfast" in message:
         response.append("For breakfast today is:")
@@ -350,3 +355,4 @@ def send_gif_message(recipient_id, message):
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
                       params=params, headers=headers, data=data)
+
