@@ -72,7 +72,7 @@ def checkForDino(message):
     time = datetime.now(TIMEZONE).time().hour
     todayMenu = getDayMenu(current_day)
     gif = None
-    if "dino" in message:
+    if "dino" in message or message == "what's cooking good looking":
     
         if time < 10:
             response.append("For breakfast today is:")
