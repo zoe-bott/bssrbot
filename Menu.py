@@ -82,7 +82,7 @@ class Dinner():
         return self._dessert
 
     def __str__(self):
-        if self.vegetarian == "chef’s choice":
+        if "chef’s choice" in self.vegetarian :
             return(f"It's a surprise! It's the chef's choice today 👩‍🍳")
         elif self.vegetarian == "burger night":
             return(f"Burger night baby 🍔")
