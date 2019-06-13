@@ -77,7 +77,7 @@ def checkForDino(message):
         if time < 10:
             response.append("For breakfast today is:")
             response.append(todayMenu.breakfast)
-        if time < 2:
+        if time < 14:
             response.append("For lunch today is:")
             response.append(str(todayMenu.lunch))
         if time < 19:
