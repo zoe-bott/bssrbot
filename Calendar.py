@@ -69,7 +69,9 @@ def getCalendar():
             ele = ele.replace('<br />', '\n')
             # print(repr(ele))
             ele = ele.replace(' \xa0', ' and ')
+            ele = ele.replace('\n', ' and ')
             if i == 0:
+                print(ele)
                 ele = ele.split('/ ')[1]
                 calendarByWeek[ele] = []
                 currentWeek = ele
