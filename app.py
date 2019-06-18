@@ -71,7 +71,9 @@ def checkForDino(message):
     current_day = datetime.now(TIMEZONE).weekday()
     
     time = datetime.now(TIMEZONE).time().hour
+    day = "today"
     if "tomorrow" in message:
+        day = "tomorrow"
         current_day+=1
         time = 0
         if current_day==7:
@@ -80,32 +82,32 @@ def checkForDino(message):
     gif = None
     if "dino" in message or "cooking good looking" in message:
         if time < 10:
-            response.append("For breakfast today is:")
+            response.append(f"For breakfast {day} is:")
             response.append(todayMenu.breakfast)
         if time < 14:
-            response.append("For lunch today is:")
+            response.append(f"For lunch {day} is:")
             response.append(str(todayMenu.lunch))
         if time < 19:
-            response.append("For dinner today is:")
+            response.append(f"For dinner {day} is:")
             response.append(str(todayMenu.dinner))
         if not response: 
             response.append("No more meals today :)")
         gif = "dog animals eating dinner"
     elif "breakfast" in message:
-        response.append("For breakfast today is:")
+        response.append(f"For breakfast {day} is:")
         response.append(todayMenu.breakfast)
         gif = "breakfast"
     elif "lunch" in message:
-        response.append("For lunch today is:")
+        response.append(f"For lunch {day} is:")
         response.append(str(todayMenu.lunch))
         if "GET KEEN IT'S SANDWICH DAY 🥪🥪" in response:
             gif = "sandwich"
         else:
             gif = todayMenu.lunch.main
     elif "dinner" in message:
-        response.append("For dinner today is:")
+        response.append(f"For dinner {day} is:")
         response.append(str(todayMenu.dinner))
-        if "It's a surprise! It's the chef's choice today 👩‍🍳" in response:
+        if f"It's a surprise! It's the chef's choice {day} 👩‍🍳" in response:
             gif = "chef"
         elif "Burger night baby 🍔" in response:
             gif = "burger"
@@ -355,4 +357,3 @@ def send_gif_message(recipient_id, message):
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
                       params=params, headers=headers, data=data)
 
-print(checkForDino("dino tomorrow"))
