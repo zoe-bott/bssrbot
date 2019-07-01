@@ -53,6 +53,8 @@ class Lunch():
             return("GET KEEN IT'S SANDWICH DAY 🥪🥪")
         elif "selection of brunch items" in self.main:
             return("selection of brunch items with pastries & extras")
+        elif "meat free mondays" in self.veg:
+            return("MEAT FREE MONDAY!")
         else:
             return (f"Main:\n {self.main}\n\n"
                     f"Vegetarian:\n {self.veg}\n\n"
@@ -88,6 +90,10 @@ class Dinner():
             return(f"Burger night baby 🍔")
         elif self.vegetarian == "pizza pasta night":
             return(f"It's pizza and pasta night 🍕!!")
+        elif "meat free mondays" in self.main:
+            return (f"Main:\n MEAT FREE MONDAY\n\n"
+                    f"Veg and Carb:\n {self.vegAndCarb}\n\n"
+                    f"Dessert:\n {self.dessert}")
         else:
             return (f"Main:\n {self.main}\n\n"
                     f"Vegetarian:\n {self.vegetarian}\n\n"
@@ -123,8 +129,8 @@ def getDayMenu(day):
     weekMenu = getWeek()
 
     breakfast = weekMenu['residential breakfast'][day]
-    lunch = Lunch(weekMenu['main'][day], weekMenu['vegetarian/ vegan'][day], weekMenu['salad'][day])
-    dinner = Dinner(weekMenu['main dinner'][day], weekMenu['vegetarian/ vegan dinner'][day], weekMenu['veg and carb'][day], weekMenu['dessert'][day])
+    lunch = Lunch(weekMenu['main'][day], weekMenu['veggie'][day], weekMenu['Salad/ veg/starch'][day])
+    dinner = Dinner(weekMenu['main dinner'][day], weekMenu['veggie dinner'][day], weekMenu['Veg and salad'][day], weekMenu['dessert'][day])
 
     dayMenu = Day(breakfast, lunch, dinner)
 
