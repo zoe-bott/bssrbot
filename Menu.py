@@ -139,6 +139,6 @@ def getDayMenu(day):
 
 if __name__ == '__main__':
     current_day = datetime.now(TIMEZONE).weekday()
-    print(getDayMenu(0))
+    print(getDayMenu(6))
     # for i in range(7):
     #     print(getDayMenu(i))
