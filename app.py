@@ -360,4 +360,4 @@ def send_gif_message(recipient_id, message):
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
                       params=params, headers=headers, data=data)
 
-print(get_bot_response("whats for dino"))
+#print(get_bot_response("whats for dino"));
