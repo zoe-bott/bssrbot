@@ -92,7 +92,7 @@ def checkForDino(message):
             response.append(str(todayMenu.dinner))
         if not response: 
             response.append("No more meals today :)")
-        gif = "dog animals eating dinner"
+        gif = "yummy"
     elif "breakfast" in message:
         response.append(f"For breakfast {day} is:")
         response.append(todayMenu.breakfast)
