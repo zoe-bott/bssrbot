@@ -47,6 +47,9 @@ def get_bot_response(message):
         gif = "you're welcome"
     if not response:
         response, gif = checkForDino(message)
+        # if response:
+            # response = []
+            # response.append("Dino hasn't sent through the menu this week :(")
     if not response:
         response, gif = checkForCalendar(message)
     if not response:
@@ -357,3 +360,4 @@ def send_gif_message(recipient_id, message):
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
                       params=params, headers=headers, data=data)
 
+#print(get_bot_response("whats for dino"));
