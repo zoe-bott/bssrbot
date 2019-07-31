@@ -281,7 +281,7 @@ def is_user_message(message):
 
 def search_gif(text):
     #get a GIF that is similar to text sent
-    payload = {'s': text, 'api_key': 'ey1oVnN1NGrtEDHFGBJjRj5AgegLFVeT', 'weirdness': 0}
+    payload = {'s': text, 'api_key': 'ey1oVnN1NGrtEDHFGBJjRj5AgegLFVeT', 'weirdness': 1}
     r = requests.get('http://api.giphy.com/v1/gifs/translate', params=payload)
     r = r.json()
     # sprint(r)
