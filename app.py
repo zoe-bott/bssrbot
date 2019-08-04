@@ -47,9 +47,6 @@ def get_bot_response(message):
         gif = "you're welcome"
     if not response:
         response, gif = checkForDino(message)
-        # if response:
-            # response = []
-            # response.append("Dino hasn't sent through the menu this week :(")
     if not response:
         response, gif = checkForCalendar(message)
     if not response:
@@ -80,7 +77,9 @@ def checkForDino(message):
         current_day+=1
         time = 0
         if current_day==7:
-            return "Sorry, do not have the menu for next week yet!", "sorry"
+            response.append("Sorry, do not have the menu for next week yet!")
+            gif = "sorry"
+            return response, gif
     todayMenu = getDayMenu(current_day)
     gif = None
     if "dino" in message or "cooking good looking" in message:
