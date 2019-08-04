@@ -94,7 +94,7 @@ def checkForDino(message):
             response.append(str(todayMenu.dinner))
         if not response: 
             response.append("No more meals today :)")
-        gif = "dog animals eating dinner"
+        gif = "yummy"
     elif "breakfast" in message:
         response.append(f"For breakfast {day} is:")
         response.append(todayMenu.breakfast)
@@ -280,7 +280,7 @@ def is_user_message(message):
 
 def search_gif(text):
     #get a GIF that is similar to text sent
-    payload = {'s': text, 'api_key': 'ey1oVnN1NGrtEDHFGBJjRj5AgegLFVeT', 'weirdness': 0}
+    payload = {'s': text, 'api_key': 'ey1oVnN1NGrtEDHFGBJjRj5AgegLFVeT', 'weirdness': 1}
     r = requests.get('http://api.giphy.com/v1/gifs/translate', params=payload)
     r = r.json()
     # sprint(r)
