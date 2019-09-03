@@ -49,7 +49,7 @@ class Lunch():
         return self._salad
 
     def __str__(self):
-        if "sandwich bar" in self.veg or "sandwich day" in self.veg or "sandwich day" in self.main:
+        if "sandwich bar" in self.veg or "sandwich day" in self.veg or "sandwich day" in self.main or "sandwich bar" in self.main:
             return("GET KEEN IT'S SANDWICH DAY 🥪🥪")
         elif "selection of brunch items" in self.main:
             return("selection of brunch items with pastries & extras")
@@ -129,7 +129,7 @@ def getDayMenu(day):
     weekMenu = getWeek()
 
     breakfast = weekMenu['residential breakfast'][day]
-    lunch = Lunch(weekMenu['hot option'][day], "vego", weekMenu['salad'][day])
+    lunch = Lunch(weekMenu['hot option'][day], weekMenu['vegetarian hot option'][day], weekMenu['salad'][day])
     dinner = Dinner(weekMenu['main course'][day], weekMenu['vegetarian'][day], weekMenu['vegetables'][day], weekMenu['the dessert station'][day])
 
     dayMenu = Day(breakfast, lunch, dinner)
@@ -139,6 +139,7 @@ def getDayMenu(day):
 
 if __name__ == '__main__':
     current_day = datetime.now(TIMEZONE).weekday()
+    # print(getDayMenu(2))
     for i in range(7):
         print(i)
         print(getDayMenu(i))
