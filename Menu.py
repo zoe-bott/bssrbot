@@ -129,8 +129,8 @@ def getDayMenu(day):
     weekMenu = getWeek()
 
     breakfast = weekMenu['residential breakfast'][day]
-    lunch = Lunch(weekMenu['main'][day], weekMenu['vegetarian/ vegan'][day], weekMenu['salad'][day])
-    dinner = Dinner(weekMenu['main dinner'][day], weekMenu['vegetarian/ vegan dinner'][day], weekMenu['veg and carb'][day], weekMenu['dessert'][day])
+    lunch = Lunch(weekMenu['hot option'][day], "vego", weekMenu['salad'][day])
+    dinner = Dinner(weekMenu['main course'][day], weekMenu['vegetarian'][day], weekMenu['vegetables'][day], weekMenu['the dessert station'][day])
 
     dayMenu = Day(breakfast, lunch, dinner)
 
@@ -139,6 +139,6 @@ def getDayMenu(day):
 
 if __name__ == '__main__':
     current_day = datetime.now(TIMEZONE).weekday()
-    print(getDayMenu(6))
     for i in range(7):
+        print(i)
         print(getDayMenu(i))
