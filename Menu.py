@@ -129,7 +129,7 @@ def getDayMenu(day):
     weekMenu = getWeek()
 
     breakfast = weekMenu['residential breakfast'][day]
-    lunch = Lunch(weekMenu['hot option'][day], weekMenu['vegetable hot option'][day], weekMenu['salad'][day])
+    lunch = Lunch(weekMenu['hot option'][day], weekMenu['vegetarian hot options'][day], weekMenu['salad'][day])
     dinner = Dinner(weekMenu['main course'][day], weekMenu['vegetarian'][day], weekMenu['vegetables'][day], weekMenu['the dessert station'][day])
 
     dayMenu = Day(breakfast, lunch, dinner)
