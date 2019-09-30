@@ -255,6 +255,9 @@ def checkForEasterEggs(message):
             response.append(f"{person.capitalize()} would clearly win.")
         except:
             response.append("Between who?") 
+    elif "campbell" or "ryan" in message:
+        response.append("Do you mean, fresher god?")
+        gif = "god"
     return response, gif
 
 def verify_webhook(req):
