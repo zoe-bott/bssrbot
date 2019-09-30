@@ -361,3 +361,8 @@ def send_gif_message(recipient_id, message):
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
                       params=params, headers=headers, data=data)
+
+
+# if __name__ == "__main__":
+#     print(get_bot_response("whats on this week"))
+    
