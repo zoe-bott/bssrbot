@@ -94,7 +94,7 @@ def checkForDino(message):
             response.append(str(todayMenu.dinner))
         if not response: 
             response.append("No more meals today :)")
-        gif = "yummy"
+        gif = "food"
     elif "breakfast" in message:
         response.append(f"For breakfast {day} is:")
         response.append(todayMenu.breakfast)
@@ -259,9 +259,6 @@ def checkForEasterEggs(message):
             response.append(f"{person.capitalize()} would clearly win.")
         except:
             response.append("Between who?") 
-    elif "campbell" or "ryan" in message:
-        response.append("Do you mean, fresher god?")
-        gif = "god"
     return response, gif
 
 def verify_webhook(req):
