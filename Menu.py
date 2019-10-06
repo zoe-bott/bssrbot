@@ -56,9 +56,11 @@ class Lunch():
         elif "meat free mondays" in self.veg:
             return("MEAT FREE MONDAY!")
         else:
-            return (f"Main:\n {self.main}\n\n"
-                    f"Vegetarian:\n {self.veg}\n\n"
-                    f"Salad:\n {self.salad}\n\n")
+            lunchString = ""
+            lunchString += (f"Main:\n {self.main}\n\n") if (self.main != "") else ""
+            lunchString += (f"Vegetarian:\n {self.veg}\n\n") if(self.veg != "") else ""
+            lunchString += (f"Salad:\n {self.salad}\n\n") if (self.salad != "") else ""
+            return lunchString
 
 class Dinner():
     def __init__(self, main, vegetarian, vegAndCarb, dessert):
@@ -129,7 +131,7 @@ def getDayMenu(day):
     weekMenu = getWeek()
 
     breakfast = weekMenu['residential breakfast'][day]
-    lunch = Lunch(weekMenu['hot option'][day], weekMenu['vegetarian hot option'][day], weekMenu['salad'][day])
+    lunch = Lunch(weekMenu['hot option'][day], weekMenu['vegetable hot option'][day], weekMenu['salad'][day])
     dinner = Dinner(weekMenu['main course'][day], weekMenu['vegetarian'][day], weekMenu['vegetables'][day], weekMenu['the dessert station'][day])
 
     dayMenu = Day(breakfast, lunch, dinner)

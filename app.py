@@ -130,6 +130,10 @@ def checkForCalendar(message):
 
     if "calendar" in message or "this week" in message:
         response.append(str(weekCalendar))
+    if "next week" in message:
+        weekNum += 1
+        weekCalendar = getWeek(weekNum)
+        response.append(str(weekCalendar))
     if "on today" in message:
         current_day = datetime.now(TIMEZONE).weekday()
         dayName = calendar.day_name[current_day].lower()
@@ -364,5 +368,5 @@ def send_gif_message(recipient_id, message):
 
 
 # if __name__ == "__main__":
-#     print(get_bot_response("whats on this week"))
+#     print(get_bot_response("whats on next week"))
     
