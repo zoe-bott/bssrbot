@@ -77,7 +77,9 @@ def checkForDino(message):
         current_day+=1
         time = 0
         if current_day==7:
-            return "Sorry, do not have the menu for next week yet!", "sorry"
+            response.append("Sorry, do not have the menu for next week yet!")
+            gif = "sorry"
+            return response, gif
     todayMenu = getDayMenu(current_day)
     gif = None
     if "dino" in message or "cooking good looking" in message:
@@ -92,7 +94,7 @@ def checkForDino(message):
             response.append(str(todayMenu.dinner))
         if not response: 
             response.append("No more meals today :)")
-        gif = "dog animals eating dinner"
+        gif = "food"
     elif "breakfast" in message:
         response.append(f"For breakfast {day} is:")
         response.append(todayMenu.breakfast)
@@ -127,6 +129,10 @@ def checkForCalendar(message):
     gif = None
 
     if "calendar" in message or "this week" in message:
+        response.append(str(weekCalendar))
+    if "next week" in message:
+        weekNum += 1
+        weekCalendar = getWeek(weekNum)
         response.append(str(weekCalendar))
     if "on today" in message:
         current_day = datetime.now(TIMEZONE).weekday()
@@ -278,7 +284,7 @@ def is_user_message(message):
 
 def search_gif(text):
     #get a GIF that is similar to text sent
-    payload = {'s': text, 'api_key': 'ey1oVnN1NGrtEDHFGBJjRj5AgegLFVeT', 'weirdness': 0}
+    payload = {'s': text, 'api_key': 'ey1oVnN1NGrtEDHFGBJjRj5AgegLFVeT', 'weirdness': 1}
     r = requests.get('http://api.giphy.com/v1/gifs/translate', params=payload)
     r = r.json()
     # sprint(r)
@@ -357,3 +363,7 @@ def send_gif_message(recipient_id, message):
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
                       params=params, headers=headers, data=data)
 
+
+# if __name__ == "__main__":
+#     print(get_bot_response("whats on next week"))
+    

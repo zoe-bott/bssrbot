@@ -1,10 +1,11 @@
 from bs4 import BeautifulSoup as BS
 from datetime import *
 import pytz
+import re
 
 TIMEZONE = pytz.timezone('Australia/Sydney')
 
-firstDay = date(2019, 6, 3)
+firstDay = date(2019, 9, 16)
 
 class Week():
     def __init__(self, monday, tuesday, wednesday, thursday, friday, saturday, sunday):
@@ -58,8 +59,7 @@ def getCalendar():
     soup = BS(open('calendar.html'), 'html.parser')
     calendarByWeek = {}
 
-    table = soup.find('table')
-    table_body = table.find('tbody')
+    table_body = soup.find('table')
     rows = table_body.find_all('tr')
     for row in rows:
         cols = row.find_all('td')
@@ -71,8 +71,8 @@ def getCalendar():
             ele = ele.replace(' \xa0', ' and ')
             ele = ele.replace('\n', ' and ')
             if i == 0:
-                print(ele)
-                ele = ele.split('/ ')[1]
+                #print(ele)
+                ele = re.findall("Week [0-9]+", ele)[0]
                 calendarByWeek[ele] = []
                 currentWeek = ele
             elif i > 2:
@@ -99,4 +99,4 @@ def calculateWeekNum():
 
 
 if __name__ == "__main__":
-    print(getWeek(1))
+    print(getWeek(14))
