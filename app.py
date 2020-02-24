@@ -247,7 +247,7 @@ def checkForEasterEggs(message):
     elif "zali" in message or "president" in message:
         response.append("Madame president")
         gif = "donald trump"
-    elif "matthew" in message or "batesy" in message or "bates" in message or "matt" in message or "batesos" in message
+    elif "matthew" in message or "batesy" in message or "bates" in message or "matt" in message or "batesos" in message:
         response.append("Daenerys of the House Targaryen, the First of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men, Queen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm, Lady Regent of the Seven Kingdoms, Breaker of Chains and Mother of Dragons")
         gif = "dracarys"
     elif "wam" in message and "jodie" in message:
